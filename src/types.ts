@@ -22,3 +22,11 @@ export type PaginationProps = {
   data: GameProps[];
   itemsPerPage: number;
 };
+
+export type PaginationPropType = {
+  nextPage: () => void;
+  prevPage: () => void;
+  setPage: (page: number) => void;
+  currentPage: number;
+  maxPage: number;
+};
