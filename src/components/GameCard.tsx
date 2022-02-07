@@ -9,7 +9,7 @@ const returnPlatformIcon=(platform:string)=>{
         case "Web Browser" :
             return <CgBrowser fontSize={20}/> 
         case "PC (Windows), Web Browser" :
-            return <> <AiFillWindows fontSize={20}/> <CgBrowser fontSize={20}/>  </>
+            return <> <AiFillWindows fontSize={24} style={{marginRight:"8px"}}/> <CgBrowser fontSize={20}/>  </>
       default:
         break;
     }
@@ -21,7 +21,12 @@ const GameCard:React.FC<{content:GameProps}> = ({content}) => {
         href={content.game_url}
         target="_blank"
         rel="noreferrer"
-            className="bg-stone-100  w-full h-full flex flex-col rounded-md overflow-hidden cursor-pointer hover:scale-110 hover:transition-all">
+            className="
+              w-full h-full flex flex-col rounded-md shadow-lg
+              overflow-hidden cursor-pointer 
+              hover:scale-110 hover:transition-all hover:shadow-3xl
+              focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+            >
         <div>
             <img
                 className="w-full  h-[180px] " 
@@ -32,11 +37,11 @@ const GameCard:React.FC<{content:GameProps}> = ({content}) => {
             <h3 className="py-0.5 text-xl font-semibold">{content.title}</h3>
             <h5 className="">{content.short_description}</h5>
         </div>
-        <div className="w-full px-3 py-2 flex   justify-between">
+        <div className="w-full px-3 py-2 flex   justify-between items-center">
         <div className="flex">
             {returnPlatformIcon(content.platform)}
         </div>
-        <h5 className="px-1 rounded-md bg-blue-600 text-gray-100">
+        <h5 className="py-0.5 px-1 rounded-md bg-blue-600 font-bold  text-xs text-gray-100 ">
             {content.genre}
         </h5>
         </div>
