@@ -13,57 +13,20 @@ type Prop = {
 
 const GameFilter = ({ filter, onFilterChange }: Prop) => {
   return (
-    <Box display="flex" justifyContent="space-between">
-      <FormGroup sx={{ width: "24%" }}>
-        <InputLabel htmlFor="platform-select">Games by platform</InputLabel>
-        <Select
-          name="platform-select"
-          value={filter.platform}
-          label="platform"
-
-        >
+    <form >
           {
-            PLATFORMS.map(item => <MenuItem key={item.value} value={item.value}>{item.display}</MenuItem>)
+            PLATFORMS.map(item => <option key={item.value} value={item.value}>{item.display}</option>)
           }
-        </Select>
-      </FormGroup>
-      <FormGroup sx={{ width: "24%" }}>
-        <InputLabel htmlFor="genre-select">Games by Genre</InputLabel>
-        <Select
-          name="genre-select"
-          value={filter.genre}
-          label="genre"
-        >
           {
-            GENRES.map(item => <MenuItem key={item.value} value={item.value}>{item.display}</MenuItem>)
+            GENRES.map(item => <option key={item.value} value={item.value}>{item.display}</option>)
           }
-        </Select>
-      </FormGroup>
-      <FormGroup sx={{ width: "24%" }}>
-        <InputLabel htmlFor="tag-select">Games by Tags</InputLabel>
-        <Select
-          name="tag-select"
-          value={filter.tag}
-          label="tag"
-        >
           {
-            TAGS.map(item => <MenuItem key={item.value} value={item.value}>{item.display}</MenuItem>)
+            TAGS.map(item => <option key={item.value} value={item.value}>{item.display}</option>)
           }
-        </Select>
-      </FormGroup>
-      <FormGroup sx={{ width: "24%" }}>
-        <InputLabel htmlFor="sortBy-select">Sort By</InputLabel>
-        <Select
-          name="sortBy-select"
-          value={filter.sortBy}
-          label="sort_by"
-        >
           {
-            SORT_BY.map(item => <MenuItem key={item.value} value={item.value}>{item.display}</MenuItem>)
+            SORT_BY.map(item => <option key={item.value} value={item.value}>{item.display}</option>)
           }
-        </Select>
-      </FormGroup>
-    </Box>
+    </form>
   );
 };
 
