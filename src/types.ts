@@ -30,3 +30,15 @@ export type PaginationPropType = {
   currentPage: number;
   maxPage: number;
 };
+// filter types
+export type FilterType = {
+  value: string;
+  display: string;
+};
+
+export type Filter = {
+  platform: string;
+  genre?: string;
+  tag?: string;
+  sortBy: string;
+};

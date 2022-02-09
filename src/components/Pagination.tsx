@@ -14,7 +14,7 @@ const Pagination = ({ nextPage, prevPage, setPage,  currentPage, maxPage}:Pagina
        </div>
       <div className=" w-1/2  flex flex-1 justify-center">
         {
-          pageNumbers.map(page=><p className="paginationBtn px-4 font-semibold"  onClick={()=>setPage(page)}>{page}</p>)
+          pageNumbers.map((page,index)=><p key={index} className="paginationBtn px-4 font-semibold"  onClick={()=>setPage(page)}>{page}</p>)
         }
       </div>
       <div className="flex">

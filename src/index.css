@@ -6,7 +6,7 @@
 }
 
 .paginationBtn {
-  @apply border-black cursor-pointer px-3 py-2 mx-2 grid place-items-center bg-zinc-200 rounded-sm  hover:bg-zinc-300 hover:scale-105;
+  @apply border-black cursor-pointer px-3 py-2 mx-2 grid place-items-center bg-slate-100 rounded-sm  hover:bg-slate-200 hover:scale-105;
 }
 
 @tailwind utilities;
