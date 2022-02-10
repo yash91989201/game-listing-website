@@ -1,55 +1,48 @@
 import { ChangeEvent,useState,useCallback } from "react";
-import { useQuery } from "react-query";
-import usePagination from "../customHooks/usePagination";
+// import prop types
 import { GameProps } from "../types";
-import GameFilter from "./GameFilter";
+// import custom hooks
+import usePagination from "../customHooks/usePagination";
+import useFetch from "../customHooks/useFetch";
+// import components
 import GameList from "./GameList";
+import GameFilter from "./GameFilter";
 import Pagination from "./Pagination";
 
-const fetchGameData=async():Promise<GameProps[]> =>{
-  // https://free-to-play-games-database.p.rapidapi.com/api/games
-  const res=await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
-      "x-rapidapi-key": "1dd9ee7ab1msh835f5e7f1a69d6cp1489c7jsn064ebcd252fb"
-    }
-  });
-    return await res.json();
-}
-
 const Home:React.FC = () => {
-  const [itemsPerPage,setItemsPerPage]=useState(6);
+  const [itemsPerPage,setItemsPerPage]=useState(9);
   const [filter,setFilter]=useState({
-    platform:"Windows (PC)",
-    genre:"",
+    platform:"browser",
+    genre:"mmo",
     tags:"",
     sortBy:"relevance"
     
   });
+  const {games,error}=useFetch(filter);
+  const { nextPage, prevPage, setPage, currentData, currentPage, maxPage }=usePagination(games as GameProps[],itemsPerPage);
+  // filter function for change in select element
   const onFilterChange=useCallback((event:ChangeEvent<HTMLFormElement>)=>{
     event.preventDefault()
-    setFilter(current=>({...current,[event.target.name]:[event.target.value]}))
+    setFilter(current=>({...current,[event.target.name]:event.target.value}))
   },[]);
-  const {data,isLoading,error}=useQuery<GameProps[]>("gameData",fetchGameData);
-  const { nextPage, prevPage, setPage, currentData, currentPage, maxPage }=usePagination(data as GameProps[],itemsPerPage);
-  if(isLoading )
-  return <p>game data is being loaded</p>
   if(error)
-  return <p>error in fetching game data</p>
+  return <p>Aww snap ! some error occoured</p>
   return(
     <>
-    <div className="border mx-auto w-8/12" >
+    <div className=" mx-auto w-8/12" >
       <GameFilter filter={filter} onFilterChange={onFilterChange}/>
     </div>
-    <div className="border w-8/12 mx-auto py-6">
+    <div className="w-8/12 mx-auto py-10">
+    <label htmlFor="itemsPerPage" className="relative">
+      <span className="selectLabel -top-6">Games Per Page</span>
     <select
-      className="w-16" 
+      className="selectBox w-1/5" 
       onChange={(event:ChangeEvent<HTMLSelectElement>)=>setItemsPerPage(Number.parseInt(event.target.value))}>
     <option value="9">9</option>
     <option value="12">12</option>
     <option value="24">24</option>
     </select>
+    </label>
     </div>
       <GameList games={currentData()}/>
       <Pagination nextPage={nextPage} prevPage={prevPage} setPage={setPage} currentPage={currentPage} maxPage={maxPage}/>
