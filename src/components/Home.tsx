@@ -22,8 +22,15 @@ const Home:React.FC = () => {
   const [itemsPerPage,setItemsPerPage]=useState(6);
   const [filter,setFilter]=useState({
     platform:"Windows (PC)",
+    genre:"",
+    tags:"",
+    sortBy:"relevance"
     
   });
+  const onFilterChange=useCallback((event:ChangeEvent<HTMLFormElement>)=>{
+    event.preventDefault()
+    setFilter(current=>({...current,[event.target.name]:[event.target.value]}))
+  },[]);
   const {data,isLoading,error}=useQuery<GameProps[]>("gameData",fetchGameData);
   const { nextPage, prevPage, setPage, currentData, currentPage, maxPage }=usePagination(data as GameProps[],itemsPerPage);
   if(isLoading )
@@ -33,7 +40,7 @@ const Home:React.FC = () => {
   return(
     <>
     <div className="border mx-auto w-8/12" >
-      <GameFilter/>
+      <GameFilter filter={filter} onFilterChange={onFilterChange}/>
     </div>
     <div className="border w-8/12 mx-auto py-6">
     <select
