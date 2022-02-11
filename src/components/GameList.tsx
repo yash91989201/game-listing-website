@@ -5,8 +5,8 @@ const GameList:React.FC<GameListProps> = ({games}) => {
   return (
     <div 
         className="
-            grid grid-cols-3  grid-row-flow  gap-7 w-8/12 mx-auto 
-            md:grid-cols-3 sm:grid-cols-2
+            grid grid-row-flow  gap-7 w-8/12 mx-auto 
+            sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3
         ">
         {
         games?.map(game=>

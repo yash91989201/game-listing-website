@@ -14,7 +14,7 @@ type Prop = {
 const GameFilter = ({ onFilterChange }: Prop) => {
   return (
     <form
-		className=" relative py-5 flex justify-between" 
+		className=" w-full py-5 flex justify-between flex-wrap" 
 		onChange={onFilterChange}
 	>
 		<label 

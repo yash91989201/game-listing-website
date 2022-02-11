@@ -36,7 +36,7 @@ const Home:React.FC = () => {
     <label htmlFor="itemsPerPage" className="relative">
       <span className="selectLabel -top-6">Games Per Page</span>
     <select
-      className="selectBox w-1/5" 
+      className="selectBox sm:w-1/2 md:w-1/5" 
       onChange={(event:ChangeEvent<HTMLSelectElement>)=>setItemsPerPage(Number.parseInt(event.target.value))}>
     <option value="9">9</option>
     <option value="12">12</option>
@@ -51,3 +51,6 @@ const Home:React.FC = () => {
 };
 
 export default Home;
+
+// background - #32383e
+// text color - #7a8288

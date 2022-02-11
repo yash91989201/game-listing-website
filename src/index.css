@@ -1,12 +1,8 @@
 @tailwind base;
 @tailwind components;
 
-.border {
-  @apply border-red-600 border-2;
-}
-
 .paginationBtn {
-  @apply border-black cursor-pointer px-3 py-2 mx-2 grid place-items-center bg-gray-100/50 rounded-sm  hover:bg-gray-200 hover:scale-105;
+  @apply cursor-pointer px-3 py-2 mx-2 grid place-items-center bg-gray-100/50 rounded-sm  hover:bg-gray-200 hover:scale-105;
 }
 
 .selectLabel {
